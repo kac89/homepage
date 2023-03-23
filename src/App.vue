@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/kacper.jpg" width="155" height="155" />
+    <img alt="Kacper" class="logo" src="./assets/kacper.jpg" width="155" height="155" />
 
     <div class="wrapper">
       <HelloWorld msg="Kacper Rybczyński" />
