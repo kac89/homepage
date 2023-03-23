@@ -57,7 +57,7 @@ jobs:
         run: ls -la
         
       - name: Add CNAME
-        run: echo "kacperrybczynski.com" > CNAME;ls -la
+        run: echo "kacperrybczynski.com" > CNAME
         
       - name: Commit build
         run: |
