@@ -69,4 +69,5 @@ jobs:
           git remote add origin https://x-access-token:${{ secrets.TOKEN }}@github.com/kac89/homepage-build.git
           git add .
           git commit -m "$(date)"
-          git push -f -u origin main
+          git branch -M main
+          git push origin main --force 
