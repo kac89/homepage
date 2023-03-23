@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+name: Build
 
 on:
   push:
@@ -56,3 +56,15 @@ jobs:
       - name: cmd run
         run: ls -la
         
+      - name: Add CNAME
+        run: echo "kacperrybczynski.com" > CNAME;ls -la
+        
+      - name: Commit build
+        run: |
+          git init
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'kac89@users.noreply.github.com'
+          git remote add origin https://x-access-token:${{ secrets.TOKEN }}@github.com/kac89/myhomepage-build.git
+          git add .
+          git commit -m "$(date)"
+          git push -f -u origin main
