@@ -51,16 +51,17 @@ jobs:
         uses: actions/download-artifact@v3.0.0
         with:
           name: deploy_dist
-          path: .
+          path: deploy_dist/
           
       - name: cmd run
-        run: ls -la
+        run: cd deploy_dist;ls -la
         
       - name: Add CNAME
-        run: echo "kacperrybczynski.com" > CNAME
+        run: cd deploy_dist;echo "kacperrybczynski.com" > CNAME
         
       - name: Commit build
         run: |
+          cd deploy_dist
           git init
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'kac89@users.noreply.github.com'
