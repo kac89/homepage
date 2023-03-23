@@ -17,7 +17,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <p>— Etiquette of the Banker, 1775</p>
     <br>
     <p>"The only way to get smarter is by playing a smarter opponent."</p>
-    <p>— Fundamentals of Chess 1883 </p>
+    <p>— Fundamentals of Chess, 1883</p>
   </main>
 </template>
 
