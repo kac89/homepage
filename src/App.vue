@@ -13,7 +13,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
   <main>
 
-    <p>First rule of business, protect your investment.</p>
+    <p>"First rule of business, protect your investment."</p>
     <p>– Etiquette of the Banker, 1775</p>
     <br>
     <p>"The only way to get smarter is by playing a smarter opponent."</p>
