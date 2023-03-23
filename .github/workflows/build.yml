@@ -1,0 +1,73 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+
+    - name: npm install and npm run build
+      run: |
+          npm install
+          npm run build
+    
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        name: deploy_dist
+        path: dist
+        
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          token: ${{ secrets.TOKEN }}
+          
+      - name: Download build
+        uses: actions/download-artifact@v3.0.0
+        with:
+          name: deploy_dist
+          path: deploy_dist/
+          
+      - name: cmd run
+        run: cd deploy_dist;ls -la
+        
+      - name: Add CNAME
+        run: cd deploy_dist;echo "kacperrybczynski.com" > CNAME
+        
+      - name: Commit build
+        run: |
+          cd deploy_dist
+          ls -la
+          git init
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'kac89@users.noreply.github.com'
+          git remote add origin https://x-access-token:${{ secrets.TOKEN }}@github.com/kac89/homepage-build.git
+          git add .
+          git commit -m "$(date)"
+          git branch -M main
+          git push origin main --force 
