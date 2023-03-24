@@ -14,17 +14,15 @@ import HelloWorld from './components/HelloWorld.vue'
 
   <main>
     <div>
-
-        
-        <div style="display:grid; place-items: center;">
-          <img alt="Balance" class="logo" src="./assets/balance.png" width="250" />
-        </div>
-        <br>
         <p>"First rule of business, protect your investment."</p>
         <p>— Etiquette of the Banker, 1775</p>
         <br>
         <p>"The only way to get smarter is by playing a smarter opponent."</p>
         <p>— Fundamentals of Chess, 1883</p>
+        <br>
+        <div style="display:grid; place-items: center;">
+          <img alt="Balance" class="logo" src="./assets/balance.png" width="350" />
+        </div>
     </div>
   </main>
 </template>
