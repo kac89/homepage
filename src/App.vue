@@ -5,6 +5,7 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <header>
     <img alt="Kacper" class="logo" src="./assets/kacper.jpg" width="155" height="155" />
+    
 
     <div class="wrapper">
       <HelloWorld msg="Kacper Rybczyński" />
@@ -13,7 +14,13 @@ import HelloWorld from './components/HelloWorld.vue'
 
   <main>
     <div>
-      <p>"First rule of business, protect your investment."</p>
+
+        
+        <div style="display:grid; place-items: center;">
+          <img alt="Balance" class="logo" src="./assets/balance.png" width="250" />
+        </div>
+        <br>
+        <p>"First rule of business, protect your investment."</p>
         <p>— Etiquette of the Banker, 1775</p>
         <br>
         <p>"The only way to get smarter is by playing a smarter opponent."</p>
