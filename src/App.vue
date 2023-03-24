@@ -12,12 +12,13 @@ import HelloWorld from './components/HelloWorld.vue'
   </header>
 
   <main>
-
-    <p>"First rule of business, protect your investment."</p>
-    <p>— Etiquette of the Banker, 1775</p>
-    <br>
-    <p>"The only way to get smarter is by playing a smarter opponent."</p>
-    <p>— Fundamentals of Chess, 1883</p>
+    <div>
+      <p>"First rule of business, protect your investment."</p>
+        <p>— Etiquette of the Banker, 1775</p>
+        <br>
+        <p>"The only way to get smarter is by playing a smarter opponent."</p>
+        <p>— Fundamentals of Chess, 1883</p>
+    </div>
   </main>
 </template>
 
@@ -35,7 +36,7 @@ header {
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    /*padding-right: calc(var(--section-gap) / 2);*/
   }
 
   .logo {
