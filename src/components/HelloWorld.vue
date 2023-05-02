@@ -46,10 +46,6 @@ onMounted(() => {
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <p>IT Security Expert</p><br>
-
-    <h3>My journey</h3>
-    <p class="green"><h3>{{ data.time }}</h3></p><br>
-
     <h3>
       My projects<br>
       <a href="https://vulnrepo.com/home" target="_blank" rel="noopener">VULNRΞPO</a>, 
@@ -64,6 +60,8 @@ onMounted(() => {
       <a href="http://0day.today/author/165" target="_blank" rel="noopener">My milw0rm</a>
 
     </h3><br>
+    <h3>My journey</h3>
+    <p class="green"><h3>{{ data.time }}</h3></p><br>
     <h3>
       Contact<br>
       <a href="https://twitter.com/kacperybczynski" target="_blank" rel="noopener">@kacperybczynski</a><br>
