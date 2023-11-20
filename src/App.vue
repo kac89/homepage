@@ -20,7 +20,14 @@ import HelloWorld from './components/HelloWorld.vue'
         <p>— Fundamentals of Chess, 1883</p>
         <br>
         <div style="display:grid; place-items: center;">
-          <img alt="Balance" class="logo" src="./assets/balance.png" width="350" />
+
+          <div class="output">
+            <div class="smoki">
+            </div>
+            <div class="rownowaga">
+            </div>
+          </div>
+
           <br>
         </div>
         <br>
@@ -57,4 +64,44 @@ header {
     flex-wrap: wrap;
   }
 }
+
+
+
+.smoki {
+			background-image: url("smoki.png");
+			width: 257px;
+			height: 256px;
+			-webkit-animation:spin 12s linear infinite;
+		    -moz-animation:spin 12s linear infinite;
+		    animation:spin 12s linear infinite;
+		    z-index: 1;
+		    position: absolute;
+		}
+		.rownowaga {
+			background-image: url("rownowaga.png");
+			width: 257px;
+			height: 256px;
+			z-index: 2;
+      position: relative;
+		}
+
+		.output {
+
+			width: 257px;
+			height: 256px;
+			
+		}
+
+		@-moz-keyframes spin { 
+		    100% { -moz-transform: rotate(-360deg); } 
+		}
+		@-webkit-keyframes spin { 
+		    100% { -webkit-transform: rotate(-360deg); } 
+		}
+		@keyframes spin { 
+		    100% { 
+		        -webkit-transform: rotate(-360deg); 
+		        transform:rotate(-360deg); 
+		    } 
+		}
 </style>
