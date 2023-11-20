@@ -68,7 +68,7 @@ header {
 
 
 .smoki {
-			background-image: url("smoki.png");
+			background-image: url("./assets/smoki.png");
 			width: 257px;
 			height: 256px;
 			-webkit-animation:spin 12s linear infinite;
@@ -78,7 +78,7 @@ header {
 		  position: absolute;
 		}
 		.rownowaga {
-			background-image: url("rownowaga.png");
+			background-image: url("./assets/rownowaga.png");
 			width: 257px;
 			height: 256px;
 			z-index: 2;
