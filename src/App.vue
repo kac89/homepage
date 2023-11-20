@@ -72,10 +72,10 @@ header {
 			width: 257px;
 			height: 256px;
 			-webkit-animation:spin 12s linear infinite;
-		    -moz-animation:spin 12s linear infinite;
-		    animation:spin 12s linear infinite;
-		    z-index: 1;
-		    position: absolute;
+		  -moz-animation:spin 12s linear infinite;
+		  animation:spin 12s linear infinite;
+		  z-index: 1;
+		  position: absolute;
 		}
 		.rownowaga {
 			background-image: url("rownowaga.png");
@@ -86,10 +86,8 @@ header {
 		}
 
 		.output {
-
 			width: 257px;
 			height: 256px;
-			
 		}
 
 		@-moz-keyframes spin { 
