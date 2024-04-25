@@ -14,6 +14,39 @@ const data = reactive({
 
 const getTravelofMyLife = () => {
 
+  const card = document.querySelector('header .side-animation');
+console.log(card);
+const afterElement = window.getComputedStyle(card, 'after');
+
+card.addEventListener('mousemove', (event) => {
+    const cardRect = card.getBoundingClientRect();
+    const mouseY = event.clientY - cardRect.top; // Get relative Y position of mouse within card
+
+    const top = `${mouseY / cardRect.height * 100}%`; // Update top position based on mouse Y
+    card.style.setProperty('--slide-top', top);
+    card.style.setProperty('--slide-opacity', 1);
+});
+
+window.addEventListener('scroll', () => {
+    const cardRect = card.getBoundingClientRect();
+    isCardInViewport = cardRect.top >= 0 && cardRect.bottom <= window.innerHeight;
+
+    if (isCardInViewport) {
+        const scrollY = window.scrollY; // Get current scroll position
+        const cardHeight = cardRect.height;
+        const cardTop = cardRect.top;
+
+        const glowTop = (scrollY - cardTop) / cardHeight * 100; // Calculate glow position based on scrollY
+
+        const top = `${glowTop}%`;
+        card.style.setProperty('--slide-top', top);
+        card.style.setProperty('--slide-opacity', 1);
+    }
+});
+card.addEventListener('mouseout', () => {
+    card.style.setProperty('--slide-opacity', 0);
+});
+
   const lightSpeed = 299792458; // prędkość światła w próżni w metrach na sekundę
   const startTime = new Date("1989-01-06"); // czas początkowy w milisekundach       
   const secondsInYear = 365.25 * 24 * 60 * 60; // liczba sekund w roku (uwzględniając rok przestępny)

@@ -6,7 +6,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <header>
     <img alt="Kacper" class="logo" src="./assets/kacper.jpg" width="155" height="155" />
 
-    <div class="wrapper">
+    <div class="wrapper side-animation">
       <HelloWorld msg="Kacper Rybczyński" />
     </div>
   </header>
@@ -35,6 +35,7 @@ import HelloWorld from './components/HelloWorld.vue'
         
     </div>
   </main>
+
 </template>
 
 <style scoped>
@@ -65,6 +66,34 @@ header {
   }
 }
 
+
+.side-animation {
+  transition:transform .180s;
+  position:relative
+}
+.side-animation:after {
+  content:"";
+  height:160px;
+  width:2px;
+  position:absolute;
+  right:0;
+  top:10%;
+  transition:top,opacity;
+  transition-duration:0s,0s;
+  transition-timing-function:ease,ease;
+  transition-duration:400ms;
+  transition-timing-function:ease;
+  background:linear-gradient(transparent,hsla(160, 100%, 37%, 1),transparent);
+  opacity:1
+}
+.side-animation:after {
+  top:65%;
+  opacity:0
+}
+.side-animation:hover:after {
+  top:25%;
+  opacity:1
+}
 
 
 .smoki {
