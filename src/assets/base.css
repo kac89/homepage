@@ -72,4 +72,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.cypher {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 10px;
+}
 
+.xtext {
+  font-weight: 100;
+  font-size: 20px;
+  color: #FAFAFA;
+  height: 100%;
+}
+
+.dud {
+  color: hsla(160, 100%, 37%, 1) !important;
+}

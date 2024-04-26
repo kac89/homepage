@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, onMounted } from 'vue'
+import {TextScramble} from '../components/scramble';
 
 defineProps({
   msg: {
@@ -15,37 +16,36 @@ const data = reactive({
 const getTravelofMyLife = () => {
 
   const card = document.querySelector('header .side-animation');
-console.log(card);
-const afterElement = window.getComputedStyle(card, 'after');
+  const afterElement = window.getComputedStyle(card, 'after');
 
-card.addEventListener('mousemove', (event) => {
-    const cardRect = card.getBoundingClientRect();
-    const mouseY = event.clientY - cardRect.top; // Get relative Y position of mouse within card
+  card.addEventListener('mousemove', (event) => {
+      const cardRect = card.getBoundingClientRect();
+      const mouseY = event.clientY - cardRect.top; // Get relative Y position of mouse within card
 
-    const top = `${mouseY / cardRect.height * 100}%`; // Update top position based on mouse Y
-    card.style.setProperty('--slide-top', top);
-    card.style.setProperty('--slide-opacity', 1);
-});
+      const top = `${mouseY / cardRect.height * 100}%`; // Update top position based on mouse Y
+      card.style.setProperty('--slide-top', top);
+      card.style.setProperty('--slide-opacity', 1);
+  });
 
-window.addEventListener('scroll', () => {
-    const cardRect = card.getBoundingClientRect();
-    isCardInViewport = cardRect.top >= 0 && cardRect.bottom <= window.innerHeight;
+  window.addEventListener('scroll', () => {
+      const cardRect = card.getBoundingClientRect();
+      isCardInViewport = cardRect.top >= 0 && cardRect.bottom <= window.innerHeight;
 
-    if (isCardInViewport) {
-        const scrollY = window.scrollY; // Get current scroll position
-        const cardHeight = cardRect.height;
-        const cardTop = cardRect.top;
+      if (isCardInViewport) {
+          const scrollY = window.scrollY; // Get current scroll position
+          const cardHeight = cardRect.height;
+          const cardTop = cardRect.top;
 
-        const glowTop = (scrollY - cardTop) / cardHeight * 100; // Calculate glow position based on scrollY
+          const glowTop = (scrollY - cardTop) / cardHeight * 100; // Calculate glow position based on scrollY
 
-        const top = `${glowTop}%`;
-        card.style.setProperty('--slide-top', top);
-        card.style.setProperty('--slide-opacity', 1);
-    }
-});
-card.addEventListener('mouseout', () => {
-    card.style.setProperty('--slide-opacity', 0);
-});
+          const top = `${glowTop}%`;
+          card.style.setProperty('--slide-top', top);
+          card.style.setProperty('--slide-opacity', 1);
+      }
+  });
+  card.addEventListener('mouseout', () => {
+      card.style.setProperty('--slide-opacity', 0);
+  });
 
   const lightSpeed = 299792458; // prędkość światła w próżni w metrach na sekundę
   const startTime = new Date("1989-01-06"); // czas początkowy w milisekundach       
@@ -72,6 +72,46 @@ card.addEventListener('mouseout', () => {
 
 onMounted(() => {
     setInterval(getTravelofMyLife, 1000);
+
+  // ——————————————————————————————————————————————————
+  // Settings cypher
+  // ——————————————————————————————————————————————————
+  
+  const phrases = [
+    "This task was appointed to you.",
+    "And if you do not find a way, no one will.",
+    "Your time will come.",
+    "You will face the same Evil",
+    "and You will defeat it!",
+    "&nbsp;",
+    "Neo,",
+    "sooner or later",
+    "you're going to realize",
+    "just as I did",
+    "that there's a difference",
+    "between knowing the path",
+    "and walking the path",
+    "&nbsp;",
+    "The devil doesn't come dressed",
+    "in a red cape and pointy horns.",
+    "He comes as everything",
+    "you've ever wished for",
+    "&nbsp;"
+  ];
+  
+  const el = document.querySelector(".xtext");
+  const fx = new TextScramble(el);
+  
+  let counter = 0;
+  const next = () => {
+    fx.setText(phrases[counter]).then(() => {
+      setTimeout(next, 2000);
+    });
+    counter = (counter + 1) % phrases.length;
+  };
+  
+  next();
+
   });
 </script>
 
