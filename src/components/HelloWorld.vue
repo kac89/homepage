@@ -78,13 +78,13 @@ onMounted(() => {
   // ——————————————————————————————————————————————————
   
   const phrases = [
-    "This task was appointed to you.",
+    "This task was appointed to you.", //lotr
     "And if you do not find a way, no one will.",
     "Your time will come.",
     "You will face the same Evil",
     "and You will defeat it!",
     "&nbsp;",
-    "Neo,",
+    "Neo,", //matrix
     "sooner or later",
     "you're going to realize",
     "just as I did",
@@ -92,10 +92,10 @@ onMounted(() => {
     "between knowing the path",
     "and walking the path",
     "&nbsp;",
-    "The devil doesn't come dressed",
+    "The devil doesn't come dressed",//Tucker Max
     "in a red cape and pointy horns.",
     "He comes as everything",
-    "you've ever wished for",
+    "you've ever wished for...",
     "&nbsp;"
   ];
   
