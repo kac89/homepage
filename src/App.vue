@@ -4,7 +4,16 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Kacper" class="logo" src="./assets/kacper.jpg" width="155" height="155" />
+
+    <div>
+      <div class="card example-2">
+      <div class="inner">
+        <img alt="Kacper" class="logo" src="./assets/kacper.jpg" width="155" height="155" />
+      </div>
+      </div>
+    </div>
+
+    
 
     <div class="wrapper side-animation">
       <HelloWorld msg="Kacper Rybczyński" />
@@ -45,7 +54,7 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 0;
 }
 
 @media (min-width: 1024px) {
@@ -56,7 +65,8 @@ header {
   }
 
   .logo {
-    margin: 0 2rem 0 0;
+    display: block;
+    margin: 0;
   }
 
   header .wrapper {
@@ -131,4 +141,53 @@ header {
 		        transform:rotate(-360deg); 
 		    } 
 		}
+
+header .example-2 {
+  margin: 20px;
+  width: 160px;
+  
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    
+header .example-2 .inner {
+  position: relative;
+  z-index: 1;
+  margin: 2px;
+}
+
+header .example-2::before {
+  content: "";
+  display: block;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    hsla(160, 100%, 37%, 1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  height: 300px;
+  width: 100px;
+  transform: translate(0);
+  position: absolute;
+  animation: rotate 5s linear forwards infinite;
+  z-index: 0;
+  top: 50%;
+  transform-origin: top center;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 </style>
