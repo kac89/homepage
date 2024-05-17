@@ -139,7 +139,6 @@ onMounted(() => {
       Contact<br>
       <a href="https://x.com/kacperybczynski" target="_blank" rel="noopener"><img src="../assets/x-social-media-white-round-icon.svg" width="32" height="32" /></a>
       <a href="https://www.linkedin.com/in/kacperrybczynski/" target="_blank" rel="noopener"><img src="../assets/LinkedIN_white.svg" width="32" height="32" /></a>
-      <a href="https://github.com/kac89" target="_blank" rel="noopener"><img src="../assets/Github_white.svg" width="32" height="32" /></a>
     </h3>
   </div>
   <br><br>
