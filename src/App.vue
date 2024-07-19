@@ -5,7 +5,7 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <header>
 
-    <div>
+    <div style="display:grid; place-items: center;">
       <div class="card growborder">
         <div class="inner">
           <img alt="Kacper" class="logo" src="./assets/kacper.jpg" width="155" height="155" />
