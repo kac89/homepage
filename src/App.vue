@@ -52,6 +52,9 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
+
+@font-face { font-family: "Exocet Blizzard Light"; src: url('./assets/exocet-blizzard-light.ttf'); } 
+
 header {
   line-height: 1.5;
 }
