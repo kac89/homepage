@@ -121,7 +121,7 @@ onMounted(() => {
     <p>IT Security Expert</p><br>
     <h3>
       My projects<br>
-      <a href="https://vulnrepo.com/home" target="_blank" rel="noopener">VULNRΞPO</a>, 
+      <a href="https://vulnrepo.com/home" target="_blank" rel="noopener">VULNREPO</a>, 
       <a href="https://cifrex.org/" target="_blank" rel="noopener">cIFrex</a>, 
       <a href="https://devilteam.pl/" target="_blank" rel="noopener">DEVIL TEAM</a><br> and many 
       <a href="https://github.com/kac89?tab=repositories" target="_blank" rel="noopener">others projects</a>.
