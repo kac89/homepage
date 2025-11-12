@@ -133,6 +133,13 @@ onMounted(() => {
       <a href="http://0day.today/author/165" target="_blank" rel="noopener">My milw0rm</a>
 
     </h3><br>
+
+        <h3>
+      Top Security Researchers<br>
+      <a href="https://dbugs.ptsecurity.com/researchers/Kacper" target="_blank" rel="noopener">Kacper</a>
+
+    </h3><br>
+
     <h3>My journey</h3>
     <p class="green"><h3>{{ data.time }}</h3></p><br>
     <h3>
