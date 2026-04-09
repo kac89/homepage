@@ -2,31 +2,36 @@
 import { ref } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 
-const sideAnimationEl = ref(null)
+const infoCol = ref(null)
 </script>
 
 <template>
-  <header>
-    <div class="avatar-wrapper">
-      <div class="card growborder">
-        <div class="inner">
-          <img alt="Kacper" class="logo" src="./assets/kacper.jpg" width="155" height="155" />
-        </div>
+  <div class="hero-bg" aria-hidden="true">
+    <div class="scanline"></div>
+  </div>
+
+  <header class="hero">
+    <div class="avatar-col">
+      <div class="hex-frame">
+        <img alt="Kacper" class="avatar-img" src="./assets/kacper.jpg" />
+      </div>
+      <div class="online-badge">
+        <span class="pulse-dot"></span>
+        ONLINE
       </div>
     </div>
 
-    <div class="wrapper side-animation" ref="sideAnimationEl">
-      <HelloWorld msg="Kacper Rybczyński" :card-el="sideAnimationEl" />
+    <div class="info-col side-animation" ref="infoCol">
+      <HelloWorld msg="Kacper Rybczyński" :card-el="infoCol" />
     </div>
   </header>
 
   <main>
     <section class="quotes">
       <p>"First rule of business, protect your investment."</p>
-      <p>— Etiquette of the Banker, 1775</p>
-
+      <p class="attr">— Etiquette of the Banker, 1775</p>
       <p>"The only way to get smarter is by playing a smarter opponent."</p>
-      <p>— Fundamentals of Chess, 1883</p>
+      <p class="attr">— Fundamentals of Chess, 1883</p>
     </section>
 
     <div class="symbol-wrapper">
@@ -43,59 +48,144 @@ const sideAnimationEl = ref(null)
 </template>
 
 <style scoped>
-
 @font-face {
   font-family: "Exocet Blizzard Light";
   src: url('./assets/exocet-blizzard-light.ttf');
 }
 
-header {
-  line-height: 1.5;
+/* ── Background ─────────────────────────────────── */
+.hero-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 189, 126, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 189, 126, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
 }
 
-.logo {
-  display: block;
-  margin: 0;
+.scanline {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  animation: scanmove 8s linear infinite;
 }
 
-.avatar-wrapper {
-  display: grid;
-  place-items: center;
+@keyframes scanmove {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100px; }
 }
 
-.quotes {
+/* ── Hero layout ────────────────────────────────── */
+header.hero {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 2rem;
-}
-
-.quotes p + p:is(:nth-child(2), :nth-child(4)) {
-  margin-bottom: 1rem;
-}
-
-.symbol-wrapper {
-  display: grid;
-  place-items: center;
-  margin-bottom: 1rem;
+  align-items: center;
+  gap: 2.5rem;
+  padding-top: 3rem;
 }
 
 @media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  header.hero {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 4rem;
+    padding-top: 0;
   }
 }
 
-.side-animation {
-  transition: transform 0.18s;
+/* ── Avatar ─────────────────────────────────────── */
+.avatar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.hex-frame {
   position: relative;
+  width: 168px;
+  height: 168px;
+}
+
+.avatar-img {
+  width: 168px;
+  height: 168px;
+  object-fit: cover;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: block;
+}
+
+.radar-sweep {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(0, 189, 126, 0.35) 40deg,
+    transparent 60deg
+  );
+  animation: radar 3s linear infinite;
+}
+
+@keyframes radar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.hex-frame::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: linear-gradient(135deg, var(--color-accent), transparent 60%, var(--color-accent));
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.online-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  border: 1px solid rgba(0, 189, 126, 0.25);
+  padding: 0.2rem 0.65rem;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  background: rgba(0, 189, 126, 0.06);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: blink 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+/* ── Side glow line ─────────────────────────────── */
+.side-animation {
+  flex: 1;
+  position: relative;
+  transition: transform 0.18s;
 }
 
 .side-animation::after {
@@ -113,6 +203,37 @@ header {
 .side-animation:hover::after {
   top: 25%;
   opacity: 1;
+}
+
+/* ── Quotes ─────────────────────────────────────── */
+.quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.quotes p {
+  font-size: 0.88rem;
+  color: rgba(235, 235, 235, 0.45);
+}
+
+.quotes .attr {
+  color: rgba(0, 189, 126, 0.6);
+  margin-bottom: 0.75rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Symbol ─────────────────────────────────────── */
+.symbol-wrapper {
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .smoki {
@@ -138,47 +259,16 @@ header {
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(-360deg);
-  }
+  to { transform: rotate(-360deg); }
 }
 
-header .growborder {
-  margin: 20px;
-  width: 160px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+/* ── Cypher text ────────────────────────────────── */
+.cypher {
   justify-content: center;
-}
-
-header .growborder .inner {
+  align-items: center;
+  display: flex;
+  margin-top: 10px;
   position: relative;
   z-index: 1;
-  margin: 2px;
-}
-
-header .growborder::before {
-  content: "";
-  display: block;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    var(--color-accent) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  height: 300px;
-  width: 150px;
-  position: absolute;
-  animation: rotate 5s linear infinite;
-  z-index: 0;
-  top: 50%;
-  transform-origin: top center;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
 }
 </style>

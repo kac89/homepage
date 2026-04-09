@@ -97,11 +97,22 @@ watch(() => props.cardEl, (card) => {
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <p>IT Security Expert</p>
+    <div class="name-block">
+      <div class="prompt-prefix">&gt;_</div>
+      <h1 class="glitch-name" :data-text="msg">{{ msg }}</h1>
+    </div>
+
+    <p class="role"><span class="bracket">[</span>IT Security Expert<span class="bracket">]</span></p>
+
+    <div class="distance-stat">
+      <span class="stat-label">LIGHT TRAVELED SINCE BIRTH</span>
+      <span class="stat-value green">{{ data.time }} <span class="stat-unit">km</span></span>
+    </div>
+
+    <div class="divider"></div>
 
     <section>
-      <h3>My projects</h3>
+      <h3><span class="idx">01</span> Projects</h3>
       <p>
         <a href="https://vulnrepo.com/home" target="_blank" rel="noopener">VULNREPO</a>,
         <a href="https://cifrex.org/" target="_blank" rel="noopener">cIFrex</a>,
@@ -112,7 +123,7 @@ watch(() => props.cardEl, (card) => {
     </section>
 
     <section>
-      <h3>Research</h3>
+      <h3><span class="idx">02</span> Research</h3>
       <p>
         <a href="https://www.exploit-db.com/?author=601" target="_blank" rel="noopener">Exploit Database</a>,
         <a href="http://0day.today/author/165" target="_blank" rel="noopener">My milw0rm</a>
@@ -120,25 +131,24 @@ watch(() => props.cardEl, (card) => {
     </section>
 
     <section>
-      <h3>Top Security Researchers</h3>
+      <h3><span class="idx">03</span> Top Security Researchers</h3>
       <p>
         <a href="https://dbugs.ptsecurity.com/researchers/Kacper" target="_blank" rel="noopener">Kacper</a>
       </p>
     </section>
 
-    <section>
-      <h3>My journey</h3>
-      <h3 class="green">{{ data.time }}</h3>
-    </section>
+    <div class="divider"></div>
 
-    <section>
-      <h3>Contact</h3>
+    <section class="contact-section">
+      <h3><span class="idx">04</span> Contact</h3>
       <div class="contact-links">
-        <a href="https://x.com/kacperybczynski" target="_blank" rel="noopener">
-          <img src="../assets/x-social-media-white-round-icon.svg" width="32" height="32" alt="X (Twitter)" />
+        <a href="https://x.com/kacperybczynski" target="_blank" rel="noopener" class="contact-btn">
+          <img src="../assets/x-social-media-white-round-icon.svg" width="20" height="20" alt="X (Twitter)" />
+          <span>X / Twitter</span>
         </a>
-        <a href="https://www.linkedin.com/in/kacperrybczynski/" target="_blank" rel="noopener">
-          <img src="../assets/LinkedIN_white.svg" width="32" height="32" alt="LinkedIn" />
+        <a href="https://www.linkedin.com/in/kacperrybczynski/" target="_blank" rel="noopener" class="contact-btn">
+          <img src="../assets/LinkedIN_white.svg" width="20" height="20" alt="LinkedIn" />
+          <span>LinkedIn</span>
         </a>
       </div>
     </section>
@@ -146,37 +156,200 @@ watch(() => props.cardEl, (card) => {
 </template>
 
 <style scoped>
-h1 {
+/* ── Name block ─────────────────────────────────── */
+.name-block {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.prompt-prefix {
+  color: var(--color-accent);
+  font-size: 1.4rem;
+  font-weight: 100;
+  flex-shrink: 0;
+  animation: cursor-blink 1.2s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.glitch-name {
   font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
+  font-size: 2.4rem;
+  line-height: 1.1;
+  color: var(--color-heading);
+  position: relative;
 }
 
-h3 {
-  font-size: 1.2rem;
+.glitch-name::before,
+.glitch-name::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--color-heading);
 }
 
+.glitch-name::before {
+  animation: glitch-top 6s infinite linear;
+  clip-path: inset(0 0 70% 0);
+  color: #0ff;
+  opacity: 0;
+}
+
+.glitch-name::after {
+  animation: glitch-bot 6s infinite linear;
+  clip-path: inset(70% 0 0 0);
+  color: #f0f;
+  opacity: 0;
+}
+
+@keyframes glitch-top {
+  0%,  94%  { opacity: 0; transform: translate(0, 0); }
+  94.5%     { opacity: 1; transform: translate(-3px, -2px); }
+  95%       { opacity: 1; transform: translate( 3px,  1px); }
+  96%       { opacity: 0; transform: translate(0, 0); }
+  98%       { opacity: 1; transform: translate(-2px, 0);    }
+  98.5%     { opacity: 0; transform: translate(0, 0); }
+  100%      { opacity: 0; }
+}
+
+@keyframes glitch-bot {
+  0%,  95%  { opacity: 0; transform: translate(0, 0); }
+  95.5%     { opacity: 1; transform: translate( 4px,  2px); }
+  96.5%     { opacity: 1; transform: translate(-2px, -1px); }
+  97%       { opacity: 0; transform: translate(0, 0); }
+  100%      { opacity: 0; }
+}
+
+/* ── Role ───────────────────────────────────────── */
+.role {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: rgba(235, 235, 235, 0.55);
+  text-transform: uppercase;
+}
+
+.bracket {
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+/* ── Distance stat ──────────────────────────────── */
+.distance-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 0.85rem;
+  margin: 0.25rem 0;
+}
+
+.stat-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: rgba(235, 235, 235, 0.4);
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.stat-unit {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* ── Divider ────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  opacity: 0.25;
+  margin: 0.25rem 0;
+}
+
+/* ── Sections ───────────────────────────────────── */
 .greetings {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+h3 {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(235, 235, 235, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.idx {
+  color: var(--color-accent);
+  font-size: 0.62rem;
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Contact ────────────────────────────────────── */
+.contact-links {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(0, 189, 126, 0.3);
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  background: rgba(0, 189, 126, 0.05);
+  color: rgba(235, 235, 235, 0.7);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.contact-btn:hover {
+  background: rgba(0, 189, 126, 0.15) !important;
+  border-color: rgba(0, 189, 126, 0.6);
+}
+
+/* ── Alignment: mobile center, desktop left ─────── */
 .greetings h1,
 .greetings p,
 .greetings h3 {
   text-align: center;
 }
 
-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.name-block {
+  justify-content: center;
+}
+
+.distance-stat {
+  align-items: center;
+  border-left: none;
+  padding-left: 0;
+  border-top: 2px solid var(--color-accent);
+  padding-top: 0.5rem;
 }
 
 .contact-links {
-  display: flex;
-  gap: 0.5rem;
   justify-content: center;
 }
 
@@ -185,6 +358,18 @@ section {
   .greetings p,
   .greetings h3 {
     text-align: left;
+  }
+
+  .name-block {
+    justify-content: flex-start;
+  }
+
+  .distance-stat {
+    align-items: flex-start;
+    border-top: none;
+    padding-top: 0;
+    border-left: 2px solid var(--color-accent);
+    padding-left: 0.85rem;
   }
 
   .contact-links {
