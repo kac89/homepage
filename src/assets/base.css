@@ -4,6 +4,7 @@
   --color-gold: #C8960C;
   --color-gold-muted: rgba(200, 150, 12, 0.15);
   --color-fire: #C84B00;
+  --color-soul: rgba(100, 180, 255, 0.75);
   --color-background: #030000;
   --color-text: rgba(200, 168, 112, 0.85);
   --color-heading: #E8D5B0;
@@ -43,11 +44,20 @@ body {
   font-size: 18px;
   color: var(--color-gold);
   height: 100%;
-  text-shadow: 0 0 20px rgba(200, 150, 12, 0.45);
-  letter-spacing: 0.06em;
+  text-shadow:
+    0 0 20px rgba(200, 150, 12, 0.6),
+    0 0 40px rgba(200, 150, 12, 0.25),
+    0 0 80px rgba(155, 0, 0, 0.15);
+  letter-spacing: 0.08em;
+  animation: xtext-breathe 6s ease-in-out infinite;
+}
+
+@keyframes xtext-breathe {
+  0%, 100% { filter: brightness(0.85); }
+  50%       { filter: brightness(1.15) drop-shadow(0 0 8px rgba(200,150,12,0.4)); }
 }
 
 .dud {
   color: var(--color-accent) !important;
-  text-shadow: 0 0 8px rgba(155, 0, 0, 0.7);
+  text-shadow: 0 0 8px rgba(155, 0, 0, 0.9), 0 0 20px rgba(155, 0, 0, 0.4);
 }

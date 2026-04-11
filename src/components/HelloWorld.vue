@@ -105,7 +105,7 @@ watch(() => props.cardEl, (card) => {
     <p class="role"><span class="bracket">[</span>IT Security Expert<span class="bracket">]</span></p>
 
     <div class="distance-stat">
-      <span class="stat-label">LIGHT TRAVELED SINCE BIRTH</span>
+      <span class="stat-label">✦ LIGHT TRAVELED SINCE BIRTH ✦</span>
       <span class="stat-value green">{{ data.time }} <span class="stat-unit">km</span></span>
     </div>
 
@@ -169,7 +169,9 @@ watch(() => props.cardEl, (card) => {
   font-size: 1.4rem;
   font-weight: 100;
   flex-shrink: 0;
-  text-shadow: 0 0 12px rgba(155, 0, 0, 0.7);
+  text-shadow:
+    0 0 12px rgba(155, 0, 0, 0.8),
+    0 0 28px rgba(155, 0, 0, 0.35);
   animation: cursor-blink 1.2s step-end infinite;
 }
 
@@ -185,6 +187,7 @@ watch(() => props.cardEl, (card) => {
   color: var(--color-heading);
   position: relative;
   letter-spacing: 0.02em;
+  text-shadow: 0 0 30px rgba(200, 150, 12, 0.12);
 }
 
 .glitch-name::before,
@@ -197,7 +200,7 @@ watch(() => props.cardEl, (card) => {
 
 /* Fire orange channel */
 .glitch-name::before {
-  animation: glitch-top 6s infinite linear;
+  animation: glitch-top 5s infinite linear;
   clip-path: inset(0 0 70% 0);
   color: #FF5500;
   opacity: 0;
@@ -205,27 +208,27 @@ watch(() => props.cardEl, (card) => {
 
 /* Blood red channel */
 .glitch-name::after {
-  animation: glitch-bot 6s infinite linear;
+  animation: glitch-bot 5s infinite linear;
   clip-path: inset(70% 0 0 0);
   color: #8B0000;
   opacity: 0;
 }
 
 @keyframes glitch-top {
-  0%,  94%  { opacity: 0; transform: translate(0, 0); }
-  94.5%     { opacity: 1; transform: translate(-3px, -2px); }
-  95%        { opacity: 1; transform: translate( 3px,  1px); }
-  96%        { opacity: 0; transform: translate(0, 0); }
-  98%        { opacity: 1; transform: translate(-2px, 0);    }
-  98.5%      { opacity: 0; transform: translate(0, 0); }
+  0%,  92%  { opacity: 0; transform: translate(0, 0); }
+  92.5%     { opacity: 1; transform: translate(-4px, -2px); }
+  93%        { opacity: 1; transform: translate( 4px,  2px); }
+  94%        { opacity: 0; transform: translate(0, 0); }
+  96%        { opacity: 1; transform: translate(-3px, 0);    }
+  96.8%      { opacity: 0; transform: translate(0, 0); }
   100%       { opacity: 0; }
 }
 
 @keyframes glitch-bot {
-  0%,  95%  { opacity: 0; transform: translate(0, 0); }
-  95.5%     { opacity: 1; transform: translate( 4px,  2px); }
-  96.5%     { opacity: 1; transform: translate(-2px, -1px); }
-  97%        { opacity: 0; transform: translate(0, 0); }
+  0%,  93%  { opacity: 0; transform: translate(0, 0); }
+  93.5%     { opacity: 1; transform: translate( 5px,  3px); }
+  94.8%     { opacity: 1; transform: translate(-3px, -2px); }
+  95.5%      { opacity: 0; transform: translate(0, 0); }
   100%       { opacity: 0; }
 }
 
@@ -233,13 +236,13 @@ watch(() => props.cardEl, (card) => {
 .role {
   font-size: 0.85rem;
   letter-spacing: 0.18em;
-  color: rgba(200, 168, 112, 0.55);
+  color: rgba(200, 168, 112, 0.58);
   text-transform: uppercase;
 }
 
 .bracket {
   color: var(--color-gold);
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 /* ── Distance stat ──────────────────────────────── */
@@ -250,13 +253,16 @@ watch(() => props.cardEl, (card) => {
   border-left: 2px solid var(--color-accent);
   padding-left: 0.85rem;
   margin: 0.25rem 0;
-  box-shadow: -3px 0 12px rgba(155, 0, 0, 0.25);
+  box-shadow: -3px 0 16px rgba(155, 0, 0, 0.3);
+  background: linear-gradient(90deg, rgba(155, 0, 0, 0.06) 0%, transparent 100%);
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 
 .stat-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  color: rgba(200, 168, 112, 0.4);
+  font-size: 0.60rem;
+  letter-spacing: 0.12em;
+  color: rgba(200, 168, 112, 0.42);
   text-transform: uppercase;
 }
 
@@ -265,7 +271,9 @@ watch(() => props.cardEl, (card) => {
   letter-spacing: 0.04em;
   line-height: 1;
   color: var(--color-gold);
-  text-shadow: 0 0 14px rgba(200, 150, 12, 0.4);
+  text-shadow:
+    0 0 14px rgba(200, 150, 12, 0.5),
+    0 0 30px rgba(200, 150, 12, 0.2);
 }
 
 .stat-unit {
@@ -276,20 +284,58 @@ watch(() => props.cardEl, (card) => {
 /* ── Divider ────────────────────────────────────── */
 .divider {
   height: 1px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
-  opacity: 0.3;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(155, 0, 0, 0.55),
+    rgba(200, 150, 12, 0.3),
+    rgba(155, 0, 0, 0.55),
+    transparent
+  );
+  opacity: 0.6;
   margin: 0.25rem 0;
   box-shadow: 0 0 8px rgba(155, 0, 0, 0.3);
+}
+
+.divider::before {
+  content: "◆";
+  position: absolute;
+  top: -0.55rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.55rem;
+  color: rgba(155, 0, 0, 0.65);
+  background: var(--color-background);
+  padding: 0 0.45rem;
+  text-shadow: 0 0 10px rgba(155, 0, 0, 0.7);
 }
 
 /* ── Sections ───────────────────────────────────── */
 .greetings {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
-section {
+section:not(.contact-section) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border: 1px solid rgba(155, 0, 0, 0.2);
+  background: linear-gradient(135deg, rgba(28, 0, 0, 0.38) 0%, rgba(8, 0, 0, 0.52) 100%);
+  padding: 0.65rem 0.9rem;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: border-color 0.35s, box-shadow 0.35s;
+}
+
+section:not(.contact-section):hover {
+  border-color: rgba(155, 0, 0, 0.48);
+  box-shadow:
+    0 0 24px rgba(155, 0, 0, 0.12),
+    inset 0 0 30px rgba(90, 0, 0, 0.08);
+}
+
+.contact-section {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -299,18 +345,21 @@ h3 {
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(200, 168, 112, 0.4);
+  color: rgba(200, 168, 112, 0.45);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding-bottom: 0.28rem;
+  border-bottom: 1px solid rgba(155, 0, 0, 0.12);
+  margin-bottom: 0.12rem;
 }
 
 .idx {
   color: var(--color-gold);
   font-size: 0.62rem;
-  opacity: 0.75;
+  opacity: 0.78;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 8px rgba(200, 150, 12, 0.4);
+  text-shadow: 0 0 10px rgba(200, 150, 12, 0.5);
 }
 
 /* ── Contact ────────────────────────────────────── */
@@ -326,18 +375,20 @@ h3 {
   gap: 0.45rem;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(155, 0, 0, 0.35);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(155, 0, 0, 0.38);
   clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-  background: rgba(155, 0, 0, 0.06);
-  color: rgba(200, 168, 112, 0.75);
-  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  background: linear-gradient(135deg, rgba(155, 0, 0, 0.08) 0%, rgba(60, 0, 0, 0.12) 100%);
+  color: rgba(200, 168, 112, 0.78);
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
 .contact-btn:hover {
-  background: rgba(155, 0, 0, 0.18) !important;
-  border-color: rgba(155, 0, 0, 0.65);
-  box-shadow: 0 0 16px rgba(155, 0, 0, 0.25), inset 0 0 8px rgba(155, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(155, 0, 0, 0.22) 0%, rgba(80, 0, 0, 0.28) 100%) !important;
+  border-color: rgba(155, 0, 0, 0.7);
+  box-shadow:
+    0 0 20px rgba(155, 0, 0, 0.28),
+    inset 0 0 12px rgba(155, 0, 0, 0.12);
   color: var(--color-heading);
 }
 
@@ -358,7 +409,9 @@ h3 {
   padding-left: 0;
   border-top: 2px solid var(--color-accent);
   padding-top: 0.5rem;
-  box-shadow: 0 -3px 12px rgba(155, 0, 0, 0.2);
+  box-shadow: 0 -3px 16px rgba(155, 0, 0, 0.22);
+  background: linear-gradient(180deg, rgba(155, 0, 0, 0.05) 0%, transparent 100%);
+  padding-bottom: 0.3rem;
 }
 
 .contact-links {
@@ -382,7 +435,8 @@ h3 {
     padding-top: 0;
     border-left: 2px solid var(--color-accent);
     padding-left: 0.85rem;
-    box-shadow: -3px 0 12px rgba(155, 0, 0, 0.25);
+    box-shadow: -3px 0 16px rgba(155, 0, 0, 0.28);
+    background: linear-gradient(90deg, rgba(155, 0, 0, 0.06) 0%, transparent 100%);
   }
 
   .contact-links {
