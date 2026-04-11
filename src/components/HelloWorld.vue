@@ -169,6 +169,7 @@ watch(() => props.cardEl, (card) => {
   font-size: 1.4rem;
   font-weight: 100;
   flex-shrink: 0;
+  text-shadow: 0 0 12px rgba(155, 0, 0, 0.7);
   animation: cursor-blink 1.2s step-end infinite;
 }
 
@@ -183,6 +184,7 @@ watch(() => props.cardEl, (card) => {
   line-height: 1.1;
   color: var(--color-heading);
   position: relative;
+  letter-spacing: 0.02em;
 }
 
 .glitch-name::before,
@@ -193,49 +195,51 @@ watch(() => props.cardEl, (card) => {
   color: var(--color-heading);
 }
 
+/* Fire orange channel */
 .glitch-name::before {
   animation: glitch-top 6s infinite linear;
   clip-path: inset(0 0 70% 0);
-  color: #0ff;
+  color: #FF5500;
   opacity: 0;
 }
 
+/* Blood red channel */
 .glitch-name::after {
   animation: glitch-bot 6s infinite linear;
   clip-path: inset(70% 0 0 0);
-  color: #f0f;
+  color: #8B0000;
   opacity: 0;
 }
 
 @keyframes glitch-top {
   0%,  94%  { opacity: 0; transform: translate(0, 0); }
   94.5%     { opacity: 1; transform: translate(-3px, -2px); }
-  95%       { opacity: 1; transform: translate( 3px,  1px); }
-  96%       { opacity: 0; transform: translate(0, 0); }
-  98%       { opacity: 1; transform: translate(-2px, 0);    }
-  98.5%     { opacity: 0; transform: translate(0, 0); }
-  100%      { opacity: 0; }
+  95%        { opacity: 1; transform: translate( 3px,  1px); }
+  96%        { opacity: 0; transform: translate(0, 0); }
+  98%        { opacity: 1; transform: translate(-2px, 0);    }
+  98.5%      { opacity: 0; transform: translate(0, 0); }
+  100%       { opacity: 0; }
 }
 
 @keyframes glitch-bot {
   0%,  95%  { opacity: 0; transform: translate(0, 0); }
   95.5%     { opacity: 1; transform: translate( 4px,  2px); }
   96.5%     { opacity: 1; transform: translate(-2px, -1px); }
-  97%       { opacity: 0; transform: translate(0, 0); }
-  100%      { opacity: 0; }
+  97%        { opacity: 0; transform: translate(0, 0); }
+  100%       { opacity: 0; }
 }
 
 /* ── Role ───────────────────────────────────────── */
 .role {
   font-size: 0.85rem;
   letter-spacing: 0.18em;
-  color: rgba(235, 235, 235, 0.55);
+  color: rgba(200, 168, 112, 0.55);
   text-transform: uppercase;
 }
 
 .bracket {
-  color: var(--color-accent);
-  opacity: 0.6;
+  color: var(--color-gold);
+  opacity: 0.7;
 }
 
 /* ── Distance stat ──────────────────────────────── */
@@ -246,12 +250,13 @@ watch(() => props.cardEl, (card) => {
   border-left: 2px solid var(--color-accent);
   padding-left: 0.85rem;
   margin: 0.25rem 0;
+  box-shadow: -3px 0 12px rgba(155, 0, 0, 0.25);
 }
 
 .stat-label {
   font-size: 0.62rem;
   letter-spacing: 0.14em;
-  color: rgba(235, 235, 235, 0.4);
+  color: rgba(200, 168, 112, 0.4);
   text-transform: uppercase;
 }
 
@@ -259,6 +264,8 @@ watch(() => props.cardEl, (card) => {
   font-size: 1.5rem;
   letter-spacing: 0.04em;
   line-height: 1;
+  color: var(--color-gold);
+  text-shadow: 0 0 14px rgba(200, 150, 12, 0.4);
 }
 
 .stat-unit {
@@ -270,8 +277,9 @@ watch(() => props.cardEl, (card) => {
 .divider {
   height: 1px;
   background: linear-gradient(90deg, var(--color-accent), transparent);
-  opacity: 0.25;
+  opacity: 0.3;
   margin: 0.25rem 0;
+  box-shadow: 0 0 8px rgba(155, 0, 0, 0.3);
 }
 
 /* ── Sections ───────────────────────────────────── */
@@ -291,17 +299,18 @@ h3 {
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(235, 235, 235, 0.4);
+  color: rgba(200, 168, 112, 0.4);
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .idx {
-  color: var(--color-accent);
+  color: var(--color-gold);
   font-size: 0.62rem;
-  opacity: 0.7;
+  opacity: 0.75;
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 8px rgba(200, 150, 12, 0.4);
 }
 
 /* ── Contact ────────────────────────────────────── */
@@ -318,16 +327,18 @@ h3 {
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(0, 189, 126, 0.3);
+  border: 1px solid rgba(155, 0, 0, 0.35);
   clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-  background: rgba(0, 189, 126, 0.05);
-  color: rgba(235, 235, 235, 0.7);
-  transition: background 0.3s, border-color 0.3s;
+  background: rgba(155, 0, 0, 0.06);
+  color: rgba(200, 168, 112, 0.75);
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 .contact-btn:hover {
-  background: rgba(0, 189, 126, 0.15) !important;
-  border-color: rgba(0, 189, 126, 0.6);
+  background: rgba(155, 0, 0, 0.18) !important;
+  border-color: rgba(155, 0, 0, 0.65);
+  box-shadow: 0 0 16px rgba(155, 0, 0, 0.25), inset 0 0 8px rgba(155, 0, 0, 0.1);
+  color: var(--color-heading);
 }
 
 /* ── Alignment: mobile center, desktop left ─────── */
@@ -347,6 +358,7 @@ h3 {
   padding-left: 0;
   border-top: 2px solid var(--color-accent);
   padding-top: 0.5rem;
+  box-shadow: 0 -3px 12px rgba(155, 0, 0, 0.2);
 }
 
 .contact-links {
@@ -370,6 +382,7 @@ h3 {
     padding-top: 0;
     border-left: 2px solid var(--color-accent);
     padding-left: 0.85rem;
+    box-shadow: -3px 0 12px rgba(155, 0, 0, 0.25);
   }
 
   .contact-links {

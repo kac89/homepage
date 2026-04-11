@@ -15,13 +15,14 @@ main {
 a,
 .green {
   text-decoration: none;
-  color: var(--color-accent);
+  color: var(--color-gold);
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: var(--color-accent-muted);
+    background-color: var(--color-gold-muted);
+    color: #FFD060;
   }
 }
 

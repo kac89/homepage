@@ -1,9 +1,12 @@
 :root {
-  --color-accent: hsla(160, 100%, 37%, 1);
-  --color-accent-muted: hsla(160, 100%, 37%, 0.2);
-  --color-background: #000000;
-  --color-text: rgba(235, 235, 235, 0.64);
-  --color-heading: #ffffff;
+  --color-accent: #9B0000;
+  --color-accent-muted: rgba(155, 0, 0, 0.15);
+  --color-gold: #C8960C;
+  --color-gold-muted: rgba(200, 150, 12, 0.15);
+  --color-fire: #C84B00;
+  --color-background: #030000;
+  --color-text: rgba(200, 168, 112, 0.85);
+  --color-heading: #E8D5B0;
   --section-gap: 160px;
 }
 
@@ -37,11 +40,14 @@ body {
 
 .xtext {
   font-weight: 100;
-  font-size: 20px;
-  color: #FAFAFA;
+  font-size: 18px;
+  color: var(--color-gold);
   height: 100%;
+  text-shadow: 0 0 20px rgba(200, 150, 12, 0.45);
+  letter-spacing: 0.06em;
 }
 
 .dud {
   color: var(--color-accent) !important;
+  text-shadow: 0 0 8px rgba(155, 0, 0, 0.7);
 }
