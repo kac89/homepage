@@ -10,12 +10,21 @@ const infoCol = ref(null)
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-fog" aria-hidden="true"></div>
   <div class="bg-fog-2" aria-hidden="true"></div>
+  <div class="bg-arcadia" aria-hidden="true"></div>
   <div class="bg-vignette" aria-hidden="true"></div>
   <div class="scanline" aria-hidden="true"></div>
   <div class="lightning" aria-hidden="true"></div>
 
+  <!-- Constellation overlay (Arcadia sky) -->
+  <div class="constellation" aria-hidden="true">
+    <span v-for="i in 55" :key="'star'+i" class="star" :style="{ '--i': i }"></span>
+  </div>
+
   <!-- Hellgate portal glow at bottom -->
   <div class="hellgate" aria-hidden="true"></div>
+
+  <!-- Newport waterline (The Longest Journey) -->
+  <div class="waterline" aria-hidden="true"></div>
 
   <!-- Screen corner ornaments -->
   <div class="corner-ornament tl" aria-hidden="true"></div>
@@ -59,7 +68,7 @@ const infoCol = ref(null)
     <!-- Gothic separator -->
     <div class="gothic-sep" aria-hidden="true">
       <span class="sep-line"></span>
-      <span class="sep-glyph">⛧ ☠ ⛧</span>
+      <span class="sep-glyph">⛧ ⚖ ⛧</span>
       <span class="sep-line"></span>
     </div>
 
@@ -130,10 +139,93 @@ const infoCol = ref(null)
   animation: fog-breathe 28s ease-in-out infinite alternate-reverse;
 }
 
+/* ── Arcadia haze (The Longest Journey — bleeds from the left) ── */
+.bg-arcadia {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 0% 40%,  rgba(13, 74, 92, 0.28) 0%, transparent 48%),
+    radial-gradient(ellipse at 8%  72%,  rgba(30, 92, 68, 0.18) 0%, transparent 40%),
+    radial-gradient(ellipse at 20% 15%,  rgba(10, 42, 58, 0.20) 0%, transparent 38%);
+  pointer-events: none;
+  animation: arcadia-breathe 32s ease-in-out infinite alternate;
+}
+
+@keyframes arcadia-breathe {
+  0%   { opacity: 0.45; transform: scale(1);    }
+  50%  { opacity: 0.85; transform: scale(1.05); }
+  100% { opacity: 0.40; transform: scale(0.97); }
+}
+
 @keyframes fog-breathe {
   0%   { opacity: 0.55; transform: scale(1);    }
   50%  { opacity: 1;    transform: scale(1.07); }
   100% { opacity: 0.50; transform: scale(0.95); }
+}
+
+/* ── Constellation — Arcadia sky ────────────────── */
+.constellation {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  /* Spread across the full viewport using prime-ish offsets */
+  top:  calc((var(--i) * 37 % 97) * 1%);
+  left: calc((var(--i) * 53 % 97) * 1%);
+  width:  calc(1px + (var(--i) % 2) * 1px);
+  height: calc(1px + (var(--i) % 2) * 1px);
+  /* Even-indexed stars → teal/arcadia, odd → faint gold */
+  background: color-mix(in srgb,
+    rgba(0, 180, 140, 0.9) calc((var(--i) % 2) * 100%),
+    rgba(200, 160, 80, 0.7) calc((1 - var(--i) % 2) * 100%)
+  );
+  box-shadow: 0 0 3px 1px color-mix(in srgb,
+    rgba(0, 150, 120, 0.35) calc((var(--i) % 2) * 100%),
+    rgba(200, 140, 30, 0.25) calc((1 - var(--i) % 2) * 100%)
+  );
+  animation: star-pulse calc(3s + (var(--i) % 7) * 0.8s) ease-in-out calc(var(--i) * 0.33s) infinite alternate;
+}
+
+@keyframes star-pulse {
+  0%   { opacity: 0.15; }
+  50%  { opacity: 0.75; }
+  100% { opacity: 0.20; }
+}
+
+/* ── Newport waterline (The Longest Journey) ──── */
+.waterline {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(13, 74, 92, 0.18) 60px,
+      rgba(30, 92, 68, 0.12) 90px,
+      rgba(10, 42, 58, 0.20) 130px,
+      transparent 180px
+    );
+  animation: water-shimmer 9s ease-in-out infinite alternate;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+}
+
+@keyframes water-shimmer {
+  0%   { background-position: 0 0;     opacity: 0.55; }
+  50%  { background-position: 40px 0;  opacity: 0.85; }
+  100% { background-position: -30px 0; opacity: 0.60; }
 }
 
 /* ── Vignette ───────────────────────────────────── */
@@ -328,11 +420,20 @@ const infoCol = ref(null)
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(130, 210, 255, 0.95);
+  /* odd wisps → D2 amber soul fire */
+  background: rgba(200, 120, 30, 0.92);
   box-shadow:
-    0 0 6px  3px rgba(80,  160, 255, 0.55),
-    0 0 14px 6px rgba(40,  90,  220, 0.22);
+    0 0 6px  3px rgba(180, 90,  0,  0.55),
+    0 0 14px 6px rgba(140, 40,  0,  0.22);
   animation: wisp-float calc(10s + var(--i) * 0.7s) ease-in-out calc(var(--i) * 1.6s) infinite;
+}
+
+/* even wisps → TLJ Arcadia shift magic (teal) */
+.wisp:nth-child(even) {
+  background: rgba(0, 180, 140, 0.92);
+  box-shadow:
+    0 0 6px  3px rgba(0,  150, 110, 0.55),
+    0 0 14px 6px rgba(0,   80,  70, 0.22);
 }
 
 @keyframes wisp-float {
@@ -392,13 +493,19 @@ header.hero {
   filter: contrast(1.2) brightness(0.96) saturate(1.1);
 }
 
-/* Hex border glow */
+/* Hex border glow — world-shift gradient (D2 hellfire → Arcadia teal) */
 .hex-frame::after {
   content: "";
   position: absolute;
   inset: -4px;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: linear-gradient(135deg, #9B0000 0%, #3A0000 40%, #C8960C 100%);
+  background: linear-gradient(135deg,
+    #9B0000 0%,
+    #3A0000 28%,
+    #C8960C 50%,
+    #0A4A5C 76%,
+    #1E5C44 100%
+  );
   z-index: -1;
   animation: frame-pulse 3s ease-in-out infinite;
 }
@@ -603,24 +710,29 @@ header.hero {
   left: 50%;
 }
 
+/* outer ring — D2 hellfire */
 .outer-sym-ring {
   width: 336px;
   height: 336px;
   margin-top: -168px;
   margin-left: -168px;
-  border: 1px dashed rgba(155, 0, 0, 0.22);
+  border: 1px dashed rgba(155, 0, 0, 0.30);
   box-shadow:
-    0 0 24px rgba(155, 0, 0, 0.07),
-    inset 0 0 24px rgba(155, 0, 0, 0.04);
+    0 0 24px rgba(155, 0, 0, 0.10),
+    inset 0 0 24px rgba(155, 0, 0, 0.05);
   animation: spin-ring-cw 38s linear infinite;
 }
 
+/* inner ring — TLJ Arcadia (teal, opposite spin) */
 .inner-sym-ring {
   width: 290px;
   height: 290px;
   margin-top: -145px;
   margin-left: -145px;
-  border: 1px solid rgba(200, 150, 12, 0.1);
+  border: 1px solid rgba(13, 74, 92, 0.38);
+  box-shadow:
+    0 0 18px rgba(13, 74, 92, 0.10),
+    inset 0 0 18px rgba(0, 130, 100, 0.06);
   animation: spin-ring-ccw 26s linear infinite;
 }
 

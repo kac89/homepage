@@ -68,6 +68,17 @@ const initScramble = () => {
     "in a red cape and pointy horns.",
     "He comes as everything",
     "you've ever wished for...",
+    "&nbsp;",
+    "You are the Shifter.",
+    "You alone can move between the worlds.",
+    "&nbsp;",
+    "The Balance must be maintained.",
+    "&nbsp;",
+    "Every story has a beginning,",
+    "a middle, and an end.",
+    "Not necessarily in that order.",
+    "&nbsp;",
+    "This journey has no end.",
     "&nbsp;"
   ]
 
@@ -326,13 +337,65 @@ section:not(.contact-section) {
   padding: 0.65rem 0.9rem;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
   transition: border-color 0.35s, box-shadow 0.35s;
+  overflow: hidden;
 }
 
-section:not(.contact-section):hover {
+/* Shift ripple on hover — reality tearing between worlds */
+section:not(.contact-section)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 180, 140, 0.18) 0%, transparent 65%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.55s ease-out, opacity 0.55s ease-out;
+  pointer-events: none;
+}
+
+section:not(.contact-section):hover::before {
+  transform: scale(2.8);
+  opacity: 1;
+}
+
+/* ── World-tag accent — left edge glow per section ── */
+/* Projects → D2 fire */
+section:not(.contact-section):nth-of-type(1) {
+  border-left-color: rgba(155, 0, 0, 0.55);
+  box-shadow: -3px 0 0 rgba(155, 0, 0, 0.7), inset 0 0 0 transparent;
+}
+section:not(.contact-section):nth-of-type(1):hover {
   border-color: rgba(155, 0, 0, 0.48);
   box-shadow:
-    0 0 24px rgba(155, 0, 0, 0.12),
+    -3px 0 0 rgba(200, 75, 0, 0.8),
+    0 0 24px rgba(155, 0, 0, 0.14),
     inset 0 0 30px rgba(90, 0, 0, 0.08);
+}
+
+/* Research → TLJ Arcadia teal */
+section:not(.contact-section):nth-of-type(2) {
+  border-left-color: rgba(13, 74, 92, 0.55);
+  box-shadow: -3px 0 0 rgba(13, 74, 92, 0.7), inset 0 0 0 transparent;
+}
+section:not(.contact-section):nth-of-type(2):hover {
+  border-color: rgba(13, 74, 92, 0.48);
+  box-shadow:
+    -3px 0 0 rgba(0, 130, 100, 0.8),
+    0 0 24px rgba(13, 74, 92, 0.14),
+    inset 0 0 30px rgba(0, 50, 40, 0.08);
+}
+
+/* Top Researchers → D2 gold */
+section:not(.contact-section):nth-of-type(3) {
+  border-left-color: rgba(200, 150, 12, 0.45);
+  box-shadow: -3px 0 0 rgba(200, 150, 12, 0.65), inset 0 0 0 transparent;
+}
+section:not(.contact-section):nth-of-type(3):hover {
+  border-color: rgba(200, 150, 12, 0.42);
+  box-shadow:
+    -3px 0 0 rgba(200, 150, 12, 0.8),
+    0 0 24px rgba(200, 150, 12, 0.12),
+    inset 0 0 30px rgba(80, 50, 0, 0.08);
 }
 
 .contact-section {

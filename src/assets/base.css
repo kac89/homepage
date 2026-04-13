@@ -1,4 +1,5 @@
 :root {
+  /* ── Diablo II palette ── */
   --color-accent: #9B0000;
   --color-accent-muted: rgba(155, 0, 0, 0.15);
   --color-gold: #C8960C;
@@ -9,6 +10,15 @@
   --color-text: rgba(200, 168, 112, 0.85);
   --color-heading: #E8D5B0;
   --section-gap: 160px;
+
+  /* ── The Longest Journey dual-world palette ── */
+  --color-arcadia: #0D4A5C;        /* Arcadia — deep teal, Venice canals  */
+  --color-arcadia-glow: rgba(13, 74, 92, 0.55);
+  --color-stark: #1A1A3A;          /* Stark — cold void blue, industrial  */
+  --color-ocean: #0A2A3A;          /* dark water, Newport docks           */
+  --color-kin: #1E5C44;            /* the Draic Kin — ancient emerald     */
+  --color-kin-glow: rgba(30, 92, 68, 0.45);
+  --color-shift: rgba(0, 180, 140, 0.75); /* the Shift shimmer            */
 }
 
 *,
