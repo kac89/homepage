@@ -12,7 +12,6 @@ const infoCol = ref(null)
   <div class="bg-fog-2" aria-hidden="true"></div>
   <div class="bg-arcadia" aria-hidden="true"></div>
   <div class="bg-vignette" aria-hidden="true"></div>
-  <div class="scanline" aria-hidden="true"></div>
   <div class="lightning" aria-hidden="true"></div>
 
   <!-- Constellation overlay (Arcadia sky) -->
@@ -23,19 +22,11 @@ const infoCol = ref(null)
   <!-- Hellgate portal glow at bottom -->
   <div class="hellgate" aria-hidden="true"></div>
 
-  <!-- Newport waterline (The Longest Journey) -->
-  <div class="waterline" aria-hidden="true"></div>
-
   <!-- Screen corner ornaments -->
   <div class="corner-ornament tl" aria-hidden="true"></div>
   <div class="corner-ornament tr" aria-hidden="true"></div>
   <div class="corner-ornament bl" aria-hidden="true"></div>
   <div class="corner-ornament br" aria-hidden="true"></div>
-
-  <!-- Blood drips from top edge -->
-  <div class="blood-drips" aria-hidden="true">
-    <span v-for="i in 18" :key="'drip'+i" class="blood-drip" :style="{ '--i': i }"></span>
-  </div>
 
   <!-- Ember particles -->
   <div class="embers" aria-hidden="true">
@@ -199,35 +190,6 @@ const infoCol = ref(null)
   100% { opacity: 0.20; }
 }
 
-/* ── Newport waterline (The Longest Journey) ──── */
-.waterline {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 28px;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      rgba(13, 74, 92, 0.18) 60px,
-      rgba(30, 92, 68, 0.12) 90px,
-      rgba(10, 42, 58, 0.20) 130px,
-      transparent 180px
-    );
-  animation: water-shimmer 9s ease-in-out infinite alternate;
-  mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
-}
-
-@keyframes water-shimmer {
-  0%   { background-position: 0 0;     opacity: 0.55; }
-  50%  { background-position: 40px 0;  opacity: 0.85; }
-  100% { background-position: -30px 0; opacity: 0.60; }
-}
-
 /* ── Vignette ───────────────────────────────────── */
 .bg-vignette {
   position: fixed;
@@ -235,27 +197,6 @@ const infoCol = ref(null)
   z-index: 0;
   background: radial-gradient(ellipse at center, transparent 20%, rgba(0, 0, 0, 0.94) 100%);
   pointer-events: none;
-}
-
-/* ── Scanlines ──────────────────────────────────── */
-.scanline {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(0, 0, 0, 0.18) 2px,
-    rgba(0, 0, 0, 0.18) 3px
-  );
-  pointer-events: none;
-  animation: scanmove 6s linear infinite;
-}
-
-@keyframes scanmove {
-  0%   { background-position: 0 0;    }
-  100% { background-position: 0 80px; }
 }
 
 /* ── Lightning flash ────────────────────────────── */
@@ -345,35 +286,6 @@ const infoCol = ref(null)
 @keyframes corner-glow {
   0%, 100% { opacity: 0.5; }
   50%       { opacity: 1;   }
-}
-
-/* ── Blood drips ────────────────────────────────── */
-.blood-drips {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 160px;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.blood-drip {
-  position: absolute;
-  top: 0;
-  left: calc(var(--i) * 5.5% + 0.5%);
-  width: 2px;
-  border-radius: 0 0 60% 60%;
-  background: linear-gradient(to bottom, rgba(130, 0, 0, 0.9), rgba(180, 0, 0, 0.3), rgba(160, 0, 0, 0));
-  animation: drip calc(2.4s + var(--i) * 0.28s) ease-in calc(var(--i) * 0.95s) infinite;
-}
-
-@keyframes drip {
-  0%   { height: 4px;   opacity: 0.9; }
-  25%  { height: 35px;  opacity: 0.75; }
-  60%  { height: 85px;  opacity: 0.5;  }
-  100% { height: 130px; opacity: 0;    }
 }
 
 /* ── Ember particles ────────────────────────────── */
@@ -691,14 +603,16 @@ header.hero {
   letter-spacing: 0.04em;
 }
 
-/* ── Symbol section ─────────────────────────────── */
+/* ── Symbol section (ornament — demoted from centerpiece) ─ */
 .symbol-wrapper {
   display: grid;
   place-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   position: relative;
   z-index: 1;
-  height: 256px;
+  height: 150px;
+  opacity: 0.72;
+  transition: opacity 0.5s ease;
 }
 
 /* Rotating rune rings */
@@ -712,28 +626,30 @@ header.hero {
 
 /* outer ring — D2 hellfire */
 .outer-sym-ring {
-  width: 336px;
-  height: 336px;
-  margin-top: -168px;
-  margin-left: -168px;
-  border: 1px dashed rgba(155, 0, 0, 0.30);
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
+  border: 1px dashed rgba(155, 0, 0, 0.28);
   box-shadow:
-    0 0 24px rgba(155, 0, 0, 0.10),
-    inset 0 0 24px rgba(155, 0, 0, 0.05);
+    0 0 16px rgba(155, 0, 0, 0.08),
+    inset 0 0 16px rgba(155, 0, 0, 0.04);
   animation: spin-ring-cw 38s linear infinite;
+  transition: box-shadow 0.55s ease, border-color 0.55s ease;
 }
 
 /* inner ring — TLJ Arcadia (teal, opposite spin) */
 .inner-sym-ring {
-  width: 290px;
-  height: 290px;
-  margin-top: -145px;
-  margin-left: -145px;
-  border: 1px solid rgba(13, 74, 92, 0.38);
+  width: 170px;
+  height: 170px;
+  margin-top: -85px;
+  margin-left: -85px;
+  border: 1px solid rgba(13, 74, 92, 0.34);
   box-shadow:
-    0 0 18px rgba(13, 74, 92, 0.10),
-    inset 0 0 18px rgba(0, 130, 100, 0.06);
+    0 0 12px rgba(13, 74, 92, 0.08),
+    inset 0 0 12px rgba(0, 130, 100, 0.05);
   animation: spin-ring-ccw 26s linear infinite;
+  transition: box-shadow 0.55s ease, border-color 0.55s ease;
 }
 
 @keyframes spin-ring-cw  { to { transform: rotate(360deg);   } }
@@ -741,26 +657,66 @@ header.hero {
 
 .smoki {
   background-image: url("./assets/smoki.png");
-  width: 257px;
-  height: 256px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 140px;
+  height: 140px;
   animation: spin 12s linear infinite;
   z-index: 1;
   position: absolute;
   filter: sepia(1) saturate(7) hue-rotate(310deg) brightness(0.70);
+  transition: filter 0.6s ease, animation-duration 0.5s ease;
 }
 
 .rownowaga {
   background-image: url("./assets/rownowaga.png");
-  width: 257px;
-  height: 256px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 140px;
+  height: 140px;
   z-index: 2;
   position: relative;
   filter: sepia(1) saturate(5) hue-rotate(15deg) brightness(0.72);
+  transition: filter 0.6s ease;
 }
 
 .output {
-  width: 256px;
-  height: 256px;
+  width: 140px;
+  height: 140px;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+/* ── Shift-realms interaction (hover .output) ───── */
+.output:hover {
+  transform: scale(1.04);
+}
+
+.output:hover .smoki {
+  animation-duration: 2s;
+  filter: sepia(1) saturate(6) hue-rotate(130deg) brightness(0.92);
+}
+
+.output:hover .rownowaga {
+  filter: sepia(1) saturate(4) hue-rotate(185deg) brightness(0.95);
+}
+
+.symbol-wrapper:has(.output:hover) {
+  opacity: 1;
+}
+
+.symbol-wrapper:has(.output:hover) .outer-sym-ring {
+  border-color: rgba(13, 74, 92, 0.55);
+  box-shadow:
+    0 0 32px rgba(13, 74, 92, 0.32),
+    inset 0 0 24px rgba(0, 180, 140, 0.14);
+}
+
+.symbol-wrapper:has(.output:hover) .inner-sym-ring {
+  border-color: rgba(0, 180, 140, 0.50);
+  box-shadow:
+    0 0 26px rgba(0, 180, 140, 0.28),
+    inset 0 0 20px rgba(13, 74, 92, 0.18);
 }
 
 @keyframes spin {
@@ -775,5 +731,46 @@ header.hero {
   margin-top: 10px;
   position: relative;
   z-index: 1;
+}
+
+/* ── Reduced motion: honor user OS preference ───── */
+@media (prefers-reduced-motion: reduce) {
+  .bg-fog,
+  .bg-fog-2,
+  .bg-arcadia,
+  .star,
+  .lightning,
+  .hellgate,
+  .corner-ornament::before,
+  .corner-ornament::after,
+  .ember,
+  .wisp,
+  .hex-frame::after,
+  .hex-orbit-ring,
+  .pulse-dot,
+  .sep-glyph,
+  .outer-sym-ring,
+  .inner-sym-ring,
+  .smoki {
+    animation: none !important;
+  }
+
+  .side-animation,
+  .side-animation::after,
+  section:not(.contact-section)::before,
+  .contact-btn,
+  .avatar-img,
+  .output,
+  .smoki,
+  .rownowaga,
+  .symbol-wrapper,
+  .outer-sym-ring,
+  .inner-sym-ring {
+    transition: none !important;
+  }
+
+  .output:hover {
+    transform: none !important;
+  }
 }
 </style>

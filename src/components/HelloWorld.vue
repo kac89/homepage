@@ -124,28 +124,62 @@ watch(() => props.cardEl, (card) => {
 
     <section>
       <h3><span class="idx">01</span> Projects</h3>
-      <p>
-        <a href="https://vulnrepo.com/home" target="_blank" rel="noopener">VULNREPO</a>,
-        <a href="https://cifrex.org/" target="_blank" rel="noopener">cIFrex</a>,
-        <a href="https://devilteam.pl/" target="_blank" rel="noopener">DEVIL TEAM</a>
-        and many
-        <a href="https://github.com/kac89?tab=repositories" target="_blank" rel="noopener">other projects</a>.
-      </p>
+      <ul class="card-list">
+        <li>
+          <a href="https://vulnrepo.com/home" target="_blank" rel="noopener">
+            <span class="card-name">VULNREPO</span>
+            <span class="card-desc">Vulnerability report manager</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://cifrex.org/" target="_blank" rel="noopener">
+            <span class="card-name">cIFrex</span>
+            <span class="card-desc">Web security tooling</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://devilteam.pl/" target="_blank" rel="noopener">
+            <span class="card-name">DEVIL TEAM</span>
+            <span class="card-desc">Security research collective</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/kac89?tab=repositories" target="_blank" rel="noopener">
+            <span class="card-name">GitHub</span>
+            <span class="card-desc">Other repositories</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
     <section>
       <h3><span class="idx">02</span> Research</h3>
-      <p>
-        <a href="https://www.exploit-db.com/?author=601" target="_blank" rel="noopener">Exploit Database</a>,
-        <a href="http://0day.today/author/165" target="_blank" rel="noopener">My milw0rm</a>
-      </p>
+      <ul class="card-list">
+        <li>
+          <a href="https://www.exploit-db.com/?author=601" target="_blank" rel="noopener">
+            <span class="card-name">Exploit Database</span>
+            <span class="card-desc">Published advisories</span>
+          </a>
+        </li>
+        <li>
+          <a href="http://0day.today/author/165" target="_blank" rel="noopener">
+            <span class="card-name">0day.today</span>
+            <span class="card-desc">milw0rm archive</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
     <section>
       <h3><span class="idx">03</span> Top Security Researchers</h3>
-      <p>
-        <a href="https://dbugs.ptsecurity.com/researchers/Kacper" target="_blank" rel="noopener">Kacper</a>
-      </p>
+      <ul class="card-list">
+        <li>
+          <a href="https://dbugs.ptsecurity.com/researchers/Kacper" target="_blank" rel="noopener">
+            <span class="card-name">PT Security</span>
+            <span class="card-desc">Researcher profile</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
     <div class="divider"></div>
@@ -177,6 +211,7 @@ watch(() => props.cardEl, (card) => {
 
 .prompt-prefix {
   color: var(--color-accent);
+  font-family: var(--font-mono);
   font-size: 1.4rem;
   font-weight: 100;
   flex-shrink: 0;
@@ -192,6 +227,7 @@ watch(() => props.cardEl, (card) => {
 }
 
 .glitch-name {
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: 2.4rem;
   line-height: 1.1;
@@ -278,16 +314,19 @@ watch(() => props.cardEl, (card) => {
 }
 
 .stat-value {
+  font-family: var(--font-mono);
   font-size: 1.5rem;
   letter-spacing: 0.04em;
   line-height: 1;
   color: var(--color-gold);
+  font-variant-numeric: tabular-nums;
   text-shadow:
     0 0 14px rgba(200, 150, 12, 0.5),
     0 0 30px rgba(200, 150, 12, 0.2);
 }
 
 .stat-unit {
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   opacity: 0.7;
 }
@@ -405,24 +444,70 @@ section:not(.contact-section):nth-of-type(3):hover {
 }
 
 h3 {
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(200, 168, 112, 0.45);
+  color: rgba(200, 168, 112, 0.55);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding-bottom: 0.28rem;
   border-bottom: 1px solid rgba(155, 0, 0, 0.12);
-  margin-bottom: 0.12rem;
+  margin-bottom: 0.35rem;
 }
 
 .idx {
+  font-family: var(--font-mono);
   color: var(--color-gold);
   font-size: 0.62rem;
   opacity: 0.78;
   font-variant-numeric: tabular-nums;
   text-shadow: 0 0 10px rgba(200, 150, 12, 0.5);
+}
+
+/* ── Card list (projects / research) ────────────── */
+.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.card-list a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.35rem 0.5rem 0.35rem 0.6rem;
+  border-left: 1px solid rgba(155, 0, 0, 0.18);
+  transition: border-color 0.25s, background 0.25s, padding-left 0.25s;
+  text-decoration: none;
+  flex-wrap: wrap;
+}
+
+.card-list a:hover {
+  border-left-color: var(--color-gold);
+  background: rgba(200, 150, 12, 0.06) !important;
+  padding-left: 0.9rem;
+  color: inherit !important;
+}
+
+.card-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+}
+
+.card-desc {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: rgba(200, 168, 112, 0.48);
+  text-transform: none;
 }
 
 /* ── Contact ────────────────────────────────────── */
